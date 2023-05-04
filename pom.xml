@@ -6,6 +6,9 @@
   <groupId>ink.helloai</groupId>
   <artifactId>parent</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>Eureka</module>
+  </modules>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
