@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication()
 @EnableEurekaClient
-public class App 
+public class GatewayApp
 {
     public static void main( String[] args )
     {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(GatewayApp.class, args);
     }
 }
