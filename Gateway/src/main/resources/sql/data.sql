@@ -1,3 +1,3 @@
-INSERT INTO user VALUES ('userId', 'test@helloai.ink', '123456');
+INSERT INTO users VALUES ('userId', 'test@helloai.ink', '123456');
 
 
