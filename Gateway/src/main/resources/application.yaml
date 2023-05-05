@@ -8,6 +8,8 @@ eureka:
 spring:
   application:
     name: gateway
+  profiles:
+    active: h2
   cloud:
     gateway:
       globalcors:
