@@ -10,6 +10,11 @@ spring:
     name: gateway
   profiles:
     active: h2
+  data:
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
   cloud:
     gateway:
       globalcors:
