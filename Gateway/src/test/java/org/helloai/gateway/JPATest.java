@@ -26,7 +26,4 @@ public class JPATest {
       Users users=usersRepository.findByEmail("test@helloai.ink");
       assertThat(password).isEqualTo(users.getPassword());
     }
-
-
-
   }
