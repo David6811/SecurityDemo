@@ -18,7 +18,9 @@ public class SecurityConfiguration {
         .authorizeExchange()
         .pathMatchers("/**").authenticated()
         .and()
-        .httpBasic();
+        .httpBasic()
+        .and()
+        .formLogin();
     return http.build();
   }
 }
