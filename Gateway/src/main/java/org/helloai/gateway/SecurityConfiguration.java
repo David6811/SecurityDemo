@@ -46,6 +46,7 @@ public class SecurityConfiguration {
         .pathMatchers(excludedAuthPages).permitAll()
         .and()
         .authorizeExchange()
+        .pathMatchers("/test/admin").hasRole("admin")
         .pathMatchers("/**").authenticated()
         .and()
         .httpBasic()

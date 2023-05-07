@@ -21,5 +21,11 @@ public class DemoController {
     return "Testing excludedAuthPages.";
   }
 
+  @GetMapping(value = "/admin")
+  @ResponseBody
+  public String admin() throws Exception {
+    return "Testing admin role.";
+  }
+
 
 }
