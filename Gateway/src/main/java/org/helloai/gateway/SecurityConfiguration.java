@@ -14,9 +14,16 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableReactiveMethodSecurity
 public class SecurityConfiguration {
 
+  private static final String[] excludedAuthPages = {
+      "/test/excludedAuthPages"
+  };
+
   @Bean
   SecurityWebFilterChain webFluxSecurityFilterChain(ServerHttpSecurity http) {
     http.csrf(csrf -> csrf.disable())
+        .authorizeExchange()
+        .pathMatchers(excludedAuthPages).permitAll()
+        .and()
         .authorizeExchange()
         .pathMatchers("/**").authenticated()
         .and()
