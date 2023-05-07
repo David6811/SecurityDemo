@@ -2,6 +2,8 @@ package org.helloai.gateway.handler;
 
 
 import io.netty.util.CharsetUtil;
+import org.helloai.gateway.entity.Users;
+import org.helloai.gateway.jwt.JwtTokenUtil;
 import org.helloai.gateway.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -19,6 +21,9 @@ import reactor.core.publisher.Mono;
 public class AuthenticationSuccessHandler implements ServerAuthenticationSuccessHandler {
   @Autowired
   UsersRepository usersRepository;
+  @Autowired
+  JwtTokenUtil jwtTokenUtil;
+
   @Override
   public Mono<Void> onAuthenticationSuccess(WebFilterExchange webFilterExchange, Authentication authentication) {
     ServerHttpResponse response = webFilterExchange.getExchange().getResponse();
@@ -27,8 +32,12 @@ public class AuthenticationSuccessHandler implements ServerAuthenticationSuccess
 
     UserDetails userDetails = (UserDetails) authentication.getPrincipal();
     String username = userDetails.getUsername();
+
     //Todo more details or token provided
-    DataBuffer buffer = response.bufferFactory().wrap(username.toString().getBytes(CharsetUtil.UTF_8));
+    Users user=usersRepository.findByEmail(username);
+    String accessToken = jwtTokenUtil.generateAccessToken(user);
+
+    DataBuffer buffer = response.bufferFactory().wrap(accessToken.getBytes(CharsetUtil.UTF_8));
     return response.writeWith(Mono.just(buffer));
   }
 }
