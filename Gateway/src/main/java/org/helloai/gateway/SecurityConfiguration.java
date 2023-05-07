@@ -1,5 +1,8 @@
 package org.helloai.gateway;
 
+import org.helloai.gateway.handler.AuthenticationFaillHandler;
+import org.helloai.gateway.handler.AuthenticationSuccessHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
@@ -14,15 +17,32 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableReactiveMethodSecurity
 public class SecurityConfiguration {
 
+  @Autowired
+  private AuthenticationSuccessHandler authenticationSuccessHandler;
+
+  @Autowired
+  private AuthenticationFaillHandler authenticationFaillHandler;
+
+  private static final String[] excludedAuthPages = {
+      "/test/excludedAuthPages"
+  };
+
   @Bean
   SecurityWebFilterChain webFluxSecurityFilterChain(ServerHttpSecurity http) {
     http.csrf(csrf -> csrf.disable())
+        .authorizeExchange()
+        .pathMatchers(excludedAuthPages).permitAll()
+        .and()
         .authorizeExchange()
         .pathMatchers("/**").authenticated()
         .and()
         .httpBasic()
         .and()
-        .formLogin();
+        .formLogin()
+        .authenticationSuccessHandler(authenticationSuccessHandler)
+        .authenticationFailureHandler(authenticationFaillHandler)
+        .and()
+        .logout().disable();
     return http.build();
   }
 

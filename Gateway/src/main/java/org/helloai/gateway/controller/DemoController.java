@@ -15,4 +15,11 @@ public class DemoController {
     return "Testing Successful.";
   }
 
+  @GetMapping(value = "/excludedAuthPages")
+  @ResponseBody
+  public String excludedAuthPages() throws Exception {
+    return "Testing excludedAuthPages.";
+  }
+
+
 }
