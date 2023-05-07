@@ -5,6 +5,10 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
+app:
+  jwt:
+    secret: abcdefghijklmnOPQRSTUVWXYZ
+
 spring:
   application:
     name: gateway
