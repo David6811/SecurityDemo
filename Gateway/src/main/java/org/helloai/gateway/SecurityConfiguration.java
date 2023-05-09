@@ -42,24 +42,24 @@ public class SecurityConfiguration {
   @Bean
   SecurityWebFilterChain webFluxSecurityFilterChain(ServerHttpSecurity http) {
     http.csrf(csrf -> csrf.disable())
-        .authorizeExchange()
-        .pathMatchers(excludedAuthPages).permitAll()
-        .and()
-        .authorizeExchange()
-        .pathMatchers("/test/admin").hasRole("admin")
-        .pathMatchers("/**").authenticated()
-        .and()
-        .httpBasic()
-        .and()
-        .formLogin()
-        .authenticationSuccessHandler(authenticationSuccessHandler)
-        .authenticationFailureHandler(authenticationFaillHandler)
-        .and()
-        .logout().disable();
+        .authorizeExchange().anyExchange().permitAll();
+//        .pathMatchers(excludedAuthPages).permitAll()
+//        .and()
+//        .authorizeExchange()
+//        .pathMatchers("/test/admin").hasRole("admin")
+//        .pathMatchers("/**").authenticated()
+//        .and()
+//        .httpBasic()
+//        .and()
+//        .formLogin()
+//        .authenticationSuccessHandler(authenticationSuccessHandler)
+//        .authenticationFailureHandler(authenticationFaillHandler)
+//        .and()
+//        .logout().disable();
     return http.build();
   }
 
-  @Bean
+  //@Bean
   public WebFilter customFilter() {
     return (ServerWebExchange exchange, WebFilterChain chain) -> {
       String token = resolveToken(exchange.getRequest());
