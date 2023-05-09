@@ -62,25 +62,6 @@ public class SecurityConfiguration {
     return http.build();
   }
 
-  //@Bean
-  public WebFilter customFilter() {
-    return (ServerWebExchange exchange, WebFilterChain chain) -> {
-      String token = resolveToken(exchange.getRequest());
-      if (jwtTokenUtil.validateAccessToken(token)) {
-        return chain.filter(exchange);
-      }
-      return null;
-    };
-  }
-
-  private String resolveToken(ServerHttpRequest request) {
-    String bearerToken = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
-    if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(HEADER_PREFIX)) {
-      return bearerToken.substring(7);
-    }
-    return null;
-  }
-
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder(8);
