@@ -30,9 +30,6 @@ public class SecurityConfiguration {
   @Autowired
   private AuthenticationFaillHandler authenticationFaillHandler;
 
-  @Autowired
-  JwtTokenUtil jwtTokenUtil;
-
   public static final String HEADER_PREFIX = "Bearer ";
 
   private static final String[] excludedAuthPages = {
