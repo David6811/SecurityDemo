@@ -36,26 +36,29 @@ public class SecurityConfiguration {
   public static final String HEADER_PREFIX = "Bearer ";
 
   private static final String[] excludedAuthPages = {
-      "/test/excludedAuthPages"
+      "/test/excludedAuthPages",
+      "/swagger-ui/**",
+      "/v2/api-docs/**",
+      "/swagger-resources/**"
   };
 
   @Bean
   SecurityWebFilterChain webFluxSecurityFilterChain(ServerHttpSecurity http) {
     http.csrf(csrf -> csrf.disable())
-        .authorizeExchange().anyExchange().permitAll();
-//        .pathMatchers(excludedAuthPages).permitAll()
-//        .and()
-//        .authorizeExchange()
-//        .pathMatchers("/test/admin").hasRole("admin")
-//        .pathMatchers("/**").authenticated()
+        .authorizeExchange()
+        .pathMatchers(excludedAuthPages).permitAll()
+        .and()
+        .authorizeExchange()
+        .pathMatchers("/test/admin").hasRole("admin")
+        .pathMatchers("/**").authenticated()
 //        .and()
 //        .httpBasic()
-//        .and()
-//        .formLogin()
-//        .authenticationSuccessHandler(authenticationSuccessHandler)
-//        .authenticationFailureHandler(authenticationFaillHandler)
-//        .and()
-//        .logout().disable();
+        .and()
+        .formLogin()
+        .authenticationSuccessHandler(authenticationSuccessHandler)
+        .authenticationFailureHandler(authenticationFaillHandler)
+        .and()
+        .logout().disable();
     return http.build();
   }
 
