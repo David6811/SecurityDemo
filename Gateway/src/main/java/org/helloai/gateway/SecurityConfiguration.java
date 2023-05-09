@@ -30,8 +30,6 @@ public class SecurityConfiguration {
   @Autowired
   private AuthenticationFaillHandler authenticationFaillHandler;
 
-  public static final String HEADER_PREFIX = "Bearer ";
-
   private static final String[] excludedAuthPages = {
       "/test/excludedAuthPages",
       "/swagger-ui/**",
