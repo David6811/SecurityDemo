@@ -101,6 +101,12 @@
       <version>0.9.1</version>
     </dependency>
 
+    <!--redis-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+
     <!-- for test-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
