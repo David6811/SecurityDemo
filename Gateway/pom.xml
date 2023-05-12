@@ -107,6 +107,13 @@
       <artifactId>spring-boot-starter-data-redis</artifactId>
     </dependency>
 
+    <!--mysql-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.49</version>
+    </dependency>
+
     <!-- for test-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
