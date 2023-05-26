@@ -34,7 +34,8 @@ public class JwtFilter implements WebFilter {
   public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
     ServerHttpRequest request = exchange.getRequest();
     String url = request.getPath().value();
-    if(Stream.of("/swagger-ui", "/v2/api-docs", "/swagger-resources").anyMatch(url::contains)){
+    System.out.println(url);
+    if(Stream.of("/swagger-ui", "/v2/api-docs", "/swagger-resources","/test/testActiveMQ").anyMatch(url::contains)){
       return chain.filter(exchange);
     }
 
