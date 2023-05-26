@@ -13,7 +13,7 @@ spring:
   application:
     name: gateway
   profiles:
-    active: mysql
+    active: h2
   data:
     jpa:
       hibernate:
@@ -44,6 +44,15 @@ spring:
               - DELETE
               - PUT
               - OPTION
+  activemq:
+    broker-url: tcp://127.0.0.1:61616
+    packages:
+      trust-all: true
+    password: admin
+    user: admin
+jms:
+  pub-sub-domain: true
+myqueue: test-activemq-queue
 
 
 

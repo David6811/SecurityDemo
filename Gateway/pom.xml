@@ -114,6 +114,12 @@
       <version>5.1.49</version>
     </dependency>
 
+    <!--AcitveMQ-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-activemq</artifactId>
+    </dependency>
+
     <!-- for test-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
